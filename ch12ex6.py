@@ -24,16 +24,20 @@ def check_dict(s, wl, res = [], called = 0):
         return res
     else:
         for child in children(s, wl):
-            print(res,'call number ', str(called), 'with s = ', s) #
+            print(res,'call number ', str(called), 'with s = ', s, 'whose children are: ', children(s, wl))
             res.append(child)
             check_dict(child, wl, res, called+1)
 
-def reducible(t):
+"""
+def reducible(s):
+    if len(s) == 1 and s in wl:
+        return True
     global wl
     print(wl)
-    for word in t:
+    for word in s:
         if word in wl:
-            return reducible(children(word))
+            return reducible(children(word, wl))
+"""
 
 wl = word_list()
-print(check_dict('sprite', wl))
+print(check_dict('at', wl))
