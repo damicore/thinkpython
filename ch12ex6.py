@@ -24,9 +24,9 @@ def check_dict(s, wl, res = [], called = 0):
         return res
     else:
         for child in children(s, wl):
-            print(res,'call number ', str(called), 'with s = ', s, 'whose children are: ', children(s, wl))
+            #print(res,'call number ', str(called), 'with s = ', s, 'whose children are: ', children(s, wl))
             res.append(child)
-            check_dict(child, wl, res, called+1)
+            return check_dict(child, wl, res, called+1)
 
 """
 def reducible(s):
@@ -40,4 +40,4 @@ def reducible(s):
 """
 
 wl = word_list()
-print(check_dict('at', wl))
+print(check_dict('sprite', wl))
