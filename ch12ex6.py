@@ -20,11 +20,13 @@ def children(s, wl):
 
 def check_dict(s, wl, res = [], called = 0):
     if len(s) == 1 and s in wl:
-        return True
+        res.append(s)
+        return res
     else:
-        for word in children(s, wl):
-            print(res,'call number ', str(called), 'with s = ', s)
-            check_dict(word, res, called+1)
+        for child in children(s, wl):
+            print(res,'call number ', str(called), 'with s = ', s) #
+            res.append(child)
+            check_dict(child, wl, res, called+1)
 
 def reducible(t):
     global wl
