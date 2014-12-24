@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+def most_freq(s):
+    """prints the letters in decreasing order of freq"""
+    hist = histogram(s)
+    res = []
+    for key, val in hist.items():
+        res.append((val, key))
+
+    res.sort(reverse=True)
+
+    ret = []
+    for freq, c in res:
+        ret.append(c)
+    return ret
+
+def histogram(s):
+    d = {}
+    for c in s:
+        d[c] = d.get(c, 0) + 1
+    return d
+
+print(most_freq('mocoso'))
