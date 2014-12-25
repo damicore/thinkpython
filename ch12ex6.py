@@ -18,26 +18,22 @@ def children(s, wl):
         i += 1
     return children
 
-def check_dict(s, wl, res = [], called = 0):
-    if len(s) == 1 and s in wl:
-        res.append(s)
+def check_dict(s, wl, res = []):
+    if len(s) == 1:
         return res
     else:
         for child in children(s, wl):
-            #print(res,'call number ', str(called), 'with s = ', s, 'whose children are: ', children(s, wl))
             res.append(child)
-            return check_dict(child, wl, res, called+1)
+            return check_dict(child, wl, res) # por qué mierda el return
+    return False
 
 """
 def reducible(s):
     if len(s) == 1 and s in wl:
         return True
-    global wl
-    print(wl)
     for word in s:
         if word in wl:
             return reducible(children(word, wl))
 """
 
 wl = word_list()
-print(check_dict('sprite', wl))
