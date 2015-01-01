@@ -37,3 +37,6 @@ def reducible(s):
 """
 
 wl = word_list()
+for word in word_list:
+    childs = check_dict(word, wl)
+    print(childs)
