@@ -47,9 +47,9 @@ def most_common(hist):
 
 def not_in_wordlist(hist, words):
     res = {}
-    for wordz in hist:
-        if wordz not in words:
-            res[wordz] = [wordz]
+    for word in hist:
+        if word not in words:
+            res[word] = [word]
     return res
 
 def not_in_wordlist(hist, words):
