@@ -11,6 +11,7 @@ class Tagger(Wobbler):
     def __init__(self, world, speed = 1, clumsiness = 60, color = 'red'):
         Wobbler.__init__(self, world, speed, clumsiness, color)
         self.origin_x, self.origin_y = self.x, self.y
+        self.it = 0
 
     def steer(self):
         """Post Condition: The turtle is always looking towards the origin point"""
@@ -18,8 +19,8 @@ class Tagger(Wobbler):
         if self.distance(0, 0) >= 200:
             self.turn_towards()
 
-        # Turn towards other turtles
-        self.turn_towards()
+        # Turn towards nearest turtles
+        self.turn_towards(*self.nearest_turtle())
 
     def away(self, x=0, y=0):
         """return degrees from one point to the other"""
@@ -38,10 +39,17 @@ class Tagger(Wobbler):
         return math.sqrt(dx**2 + dy**2)
 
     def nearest_turtle(self):
+        """
+        return a tuple with the coordinates of the nearest turtle
+        """
         turtles = self.world.animals
+
+        t = []
         for turtle in turtles:
-            print(turtle.x, turtle.y)
+            t.append((self.distance(turtle.x, turtle.y), turtle))
+
+        t.sort()
+        return t[1][1].x, t[1][1].y
 
 world = make_world(Tagger)
-print(world.grid_size())
 world.mainloop()
